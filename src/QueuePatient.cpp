@@ -6,6 +6,7 @@ using namespace std;
 QueuePatient::QueuePatient() {
     this->front = nullptr;
     this->rear = nullptr;
+    this->size = 0;
 }
 
 void QueuePatient::push(Persona* patient) {
@@ -62,6 +63,10 @@ bool QueuePatient::isEmpty() {
     } else { 
         return false;
     }
+}
+
+int QueuePatient::getSize() {
+
 }
 
 QueuePatient::~QueuePatient() {

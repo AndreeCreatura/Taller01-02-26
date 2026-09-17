@@ -21,12 +21,14 @@ class QueuePatient {
 
     Node* front;
     Node* rear;
+    int size;
 
     public:
     QueuePatient();
     void push(Persona* patient);
     Persona* pop();
     bool isEmpty();
+    int getSize();
 
     ~QueuePatient();
 
