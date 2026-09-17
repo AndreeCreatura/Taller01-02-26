@@ -20,13 +20,15 @@ class QueuePatient {
     };
 
     Node* front;
-    Node* final;
+    Node* rear;
 
     public:
     QueuePatient();
     void push(Persona* patient);
     Persona* pop();
     bool isEmpty();
+
+    ~QueuePatient();
 
 
 };
