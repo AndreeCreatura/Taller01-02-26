@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
 
-    std::ifstream file("pacientes.txt");
+    std::ifstream file("data/pacientes.txt");
 
     if (!file.is_open()) {
         std::cout << "File not found!" << std::endl;

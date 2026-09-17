@@ -9,12 +9,14 @@ class Persona {
     int ID;
     string name;
     int age;
+    string service;
 
     public:
-    Persona(int ID, string name, int age);
+    Persona(int ID, string name, int age, string service);
     int getID();
     string getName();
     int getAge();
+    string getService();
 
 
     ~Persona();
