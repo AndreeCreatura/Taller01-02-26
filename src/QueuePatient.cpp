@@ -16,6 +16,7 @@ void QueuePatient::push(Persona* patient) {
     if (this->front == nullptr) {
         this->front = n;
         this->rear = n;
+        size++;
     } else {
         
         
@@ -31,6 +32,7 @@ void QueuePatient::push(Persona* patient) {
 
         rear->next = n;
         rear = n;
+        size++;
 
     }
 
@@ -47,6 +49,8 @@ Persona* QueuePatient::pop() {
     front = front->next;
 
     delete aux;
+
+    size--;
 
     if (front == nullptr) {
         rear = nullptr;
@@ -66,7 +70,7 @@ bool QueuePatient::isEmpty() {
 }
 
 int QueuePatient::getSize() {
-
+    return this->size;
 }
 
 QueuePatient::~QueuePatient() {
