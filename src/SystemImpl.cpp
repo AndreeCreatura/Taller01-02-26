@@ -54,7 +54,7 @@ void SystemImpl::loadPatients(string filePath) {
             }
         }
         catch (invalid_argument) {
-            cout << "Invalid Age or ID: " << line << endl;
+            cout << "Invalid Age: " << line << endl;
             continue;
         }
 
