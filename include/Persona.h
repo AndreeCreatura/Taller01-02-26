@@ -6,14 +6,14 @@ using namespace std;
 
 class Persona {
     private:
-    int ID;
+    string ID;
     string name;
     int age;
     string service;
 
     public:
-    Persona(int ID, string name, int age, string service);
-    int getID();
+    Persona(string ID, string name, int age, string service);
+    string getID();
     string getName();
     int getAge();
     string getService();

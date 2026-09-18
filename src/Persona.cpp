@@ -2,14 +2,14 @@
 using namespace std;
 
 
-Persona::Persona(int ID, string name, int age, string service) {
+Persona::Persona(string ID, string name, int age, string service) {
     this->ID = ID;
     this->name = name;
     this->age = age;
     this->service;
 }
 
-int Persona::getID() {
+string Persona::getID() {
     return this->ID;
 }
 
