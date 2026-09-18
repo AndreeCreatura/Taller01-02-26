@@ -22,16 +22,15 @@ void SystemImpl::loadPatients(string filePath) {
     std::string line;
 
     while(std::getline(file, line)) { 
-        std::cout << line << std::endl;
 
         stringstream ss(line);
 
-        string idTxt;
+        string id;
         string name;
         string ageTxt;
         string service;
 
-        if (!getline(ss, idTxt, ';') || !getline(ss, name, ';') || !getline(ss, ageTxt, ';') || !getline(ss, service, ';')) {
+        if (!getline(ss, id, ';') || !getline(ss, name, ';') || !getline(ss, ageTxt, ';') || !getline(ss, service, ';')) {
             cout << "Invalid line: " << line << endl;
             continue;
         }
@@ -44,11 +43,9 @@ void SystemImpl::loadPatients(string filePath) {
         }
 
         int age;
-        int id;
 
         try {
             age = stoi(ageTxt);
-            id = stoi(idTxt);
 
             if (age < 0) {
                 cout << "Invalid Age: " << line << endl;

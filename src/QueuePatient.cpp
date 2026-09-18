@@ -89,7 +89,7 @@ string QueuePatient::showPatients() const {
     while (current != nullptr) {
         output += to_string(position) + ". ";
         Persona* p = current->patient;
-        output += to_string(p->getID()) + " - " + p->getName() + "\n";
+        output += p->getID() + " - " + p->getName() + "\n";
         current = current->next;
         position++;
     }
