@@ -48,20 +48,21 @@ Persona* QueuePatient::pop() {
 
     front = front->next;
 
+    if (front == nullptr) {
+        rear = nullptr;
+    }
+
     delete aux;
 
     size--;
 
-    if (front == nullptr) {
-        rear = nullptr;
-    }
 
     return p;
     
 }
 
 
-bool QueuePatient::isEmpty() {
+bool QueuePatient::isEmpty() const {
     if (this->front == nullptr) {
         return true;
     } else { 
@@ -73,6 +74,31 @@ int QueuePatient::getSize() {
     return this->size;
 }
 
+string QueuePatient::showPatients() const {
+    int position = 1;
+
+    string output = "";
+
+    Node* current = front;
+
+    if (isEmpty()) {
+        output = "NO HAY PACIENTES EN ESPERA!\n";
+        return output;
+    }
+
+    while (current != nullptr) {
+        output += to_string(position) + ". ";
+        Persona* p = current->patient;
+        output += to_string(p->getID()) + " - " + p->getName() + "\n";
+        current = current->next;
+        position++;
+    }
+    output += "\n";
+
+    return output;
+
+}
+
 QueuePatient::~QueuePatient() {
 
     while(front != nullptr) {
@@ -82,5 +108,7 @@ QueuePatient::~QueuePatient() {
         delete aux;
 
     }
+
+    rear = nullptr;
 
 }

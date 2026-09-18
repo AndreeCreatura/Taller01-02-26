@@ -27,8 +27,11 @@ class QueuePatient {
     QueuePatient();
     void push(Persona* patient);
     Persona* pop();
-    bool isEmpty();
+    bool isEmpty() const;
     int getSize();
+
+    string showPatients() const;
+
 
     ~QueuePatient();
 
