@@ -1,30 +1,29 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "System.h"
+#include "SystemImpl.h"
 using namespace std;
+
+
+
+
+
+
+
 
 
 
 int main() {
 
-    std::ifstream file("data/pacientes.txt");
+    System* system = new SystemImpl();
 
-    if (!file.is_open()) {
-        std::cout << "File not found!" << std::endl;
-        return 1;
-    }
-    
+    string file = "data/pacientes.txt";
 
-    std::string line;
-
-    while(std::getline(file, line)) { 
-        std::cout << line << std::endl;
-    }
-
-    file.close();
-
+    system->loadPatients(file); // Abrira siempre desde data
 
     std::cout << "Hello World" << std::endl;
 
+    
     return 0;
 }
