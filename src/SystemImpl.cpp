@@ -3,11 +3,18 @@
 #include <sstream>
 #include <fstream>
 #include "System.h"
+#include "QueuePatient.h"
+#include "Hospital.h"
 #include "SystemImpl.h"
 using namespace std;
 
 SystemImpl::SystemImpl() {
     this->patientQueue = new QueuePatient();
+    this->hospital = new Hospital();
+}
+
+string SystemImpl::showWaiting() {
+    return this->patientQueue->showPatients();
 }
 
 void SystemImpl::loadPatients(string filePath) {
@@ -75,6 +82,8 @@ SystemImpl::~SystemImpl() {
 
 void SystemImpl::attendPatients(int amount) {
 
+    cout << patientQueue->showPatients() << endl;
+
 }
 
 
@@ -87,7 +96,3 @@ void SystemImpl::showHistory() {
 }
 
 
-
-void SystemImpl::run() {
-
-}

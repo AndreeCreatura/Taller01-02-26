@@ -1,12 +1,14 @@
 #pragma once
+
 #include <string>
 #include "System.h"
 #include "QueuePatient.h"
-using namespace std;
+#include "Hospital.h"
 
 class SystemImpl : public System {
     private:
     QueuePatient* patientQueue;
+    Hospital* hospital;
 
 
 
@@ -14,11 +16,11 @@ class SystemImpl : public System {
     SystemImpl();
     ~SystemImpl();
 
-    void loadPatients(string filePath) override;
+    std::string showWaiting() override;
+
+    void loadPatients(std::string filePath) override;
     void attendPatients(int amount) override;
     void showServices() override;
     void showHistory() override;
-
-    void run();
 
 };

@@ -77,7 +77,7 @@ int QueuePatient::getSize() {
 string QueuePatient::showPatients() const {
     int position = 1;
 
-    string output = "";
+    string output = "=== PACIENTES EN ESPERA ===\n";
 
     Node* current = front;
 
