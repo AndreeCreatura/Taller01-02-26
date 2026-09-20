@@ -60,12 +60,24 @@ void SystemImpl::loadPatients(string filePath) {
 
             }
         }
-        catch (invalid_argument) {
+        catch (const invalid_argument&) {
             cout << "Invalid Age: " << line << endl;
+            continue;
+        }
+        catch (const out_of_range&) {
+            cout << "Age out of range: " << line << endl;
+            continue;
+        }
+
+        Service* s = hospital->findService(service);
+
+        if (s == nullptr) {
+            cout << "Invalid Service: " << service << endl;
             continue;
         }
 
         Persona* p = new Persona(id, name, age, service);
+
         patientQueue->push(p);
 
 
@@ -99,8 +111,8 @@ string SystemImpl::attendPatients(int amount) {
         Service* service = hospital->findService(patient->getService());
 
         if (service == nullptr) {
-            output = "Hubo un error en el manejo del servicio";
-            return output;
+            output += "Hubo un error en el manejo del servicio del paciente " + patient->getName() + ".\n";
+            continue;
         }
 
         service->addPatient(patient);
