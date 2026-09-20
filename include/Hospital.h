@@ -23,6 +23,8 @@ class Hospital {
 
     void registerAttention(Persona* patient);
 
+    std::string showServices();
+
     StackHistory* getHistory();
 
 

@@ -18,6 +18,10 @@ Hospital::Hospital() {
 
 }
 
+string Hospital::showServices() {
+    return this->services->showServices();
+}
+
 Service* Hospital::findService(string name) {
     Service* s = services->find(name);
     if (s == nullptr) {
