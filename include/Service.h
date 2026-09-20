@@ -16,7 +16,9 @@ class Service {
     ~Service();
 
     bool addPatient(Persona* patient);
-    PatientList* getPatients();
+    int getPatientCount();
+    std::string showPatients();
+    bool hasPatients();
     std::string getName();
 
 

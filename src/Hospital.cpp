@@ -36,13 +36,13 @@ void Hospital::registerAttention(Persona* patient) {
 
 }
 
-StackHistory* Hospital::getHistory() {
-    return this->history;
 
+Service* Hospital::findServiceByIndex(int index) {
+    return services->findByIndex(index);
 }
 
-ServiceList* Hospital::getServiceList() {
-    return this->services;
+string Hospital::showAttentions() {
+    return history->showAttentions();
 }
 
 

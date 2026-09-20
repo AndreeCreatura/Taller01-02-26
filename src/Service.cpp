@@ -18,8 +18,16 @@ bool Service::addPatient(Persona* patient) {
 
 }
 
-PatientList* Service::getPatients() {
-    return this->patients;
+int Service::getPatientCount() {
+    return patients->getSize();
+}
+
+bool Service::hasPatients() {
+    return patients->isEmpty();
+}
+
+string Service::showPatients() {
+    return patients->showPatients();
 }
 
 string Service::getName() {

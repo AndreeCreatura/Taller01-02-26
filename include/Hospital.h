@@ -23,11 +23,14 @@ class Hospital {
 
     Service* findService(std::string name);
 
+    Service* findServiceByIndex(int index);
+
     void registerAttention(Persona* patient);
 
     std::string showServices();
 
-    StackHistory* getHistory();
+    std::string showAttentions();
+
 
 
 };
