@@ -17,6 +17,15 @@ string SystemImpl::showWaiting() {
     return this->patientQueue->showPatients();
 }
 
+bool SystemImpl::checkDuplicate(string id) {
+    Persona* p = patientQueue->find(id);
+    if (p == nullptr) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 void SystemImpl::loadPatients(string filePath) {
     std::ifstream file(filePath);
 
@@ -49,6 +58,10 @@ void SystemImpl::loadPatients(string filePath) {
             continue;
         }
 
+        if (id.empty() || name.empty() || ageTxt.empty() || service.empty()) {
+            cout << "Invalid line: " << line << endl;
+        }
+
         int age;
 
         try {
@@ -76,6 +89,11 @@ void SystemImpl::loadPatients(string filePath) {
             continue;
         }
 
+        if (checkDuplicate(id)) {
+            cout << "Duplicated patient ID: " << id << endl;
+            continue;
+        }
+
         Persona* p = new Persona(id, name, age, service);
 
         patientQueue->push(p);
@@ -83,12 +101,12 @@ void SystemImpl::loadPatients(string filePath) {
 
     }
 
-    cout << patientQueue->showPatients() << endl;
-
 
 }
 
 SystemImpl::~SystemImpl() {
+    delete patientQueue;
+    delete hospital;
 
 }
 
@@ -112,10 +130,16 @@ string SystemImpl::attendPatients(int amount) {
 
         if (service == nullptr) {
             output += "Hubo un error en el manejo del servicio del paciente " + patient->getName() + ".\n";
+            delete patient;
             continue;
         }
 
-        service->addPatient(patient);
+        if (!service->addPatient(patient)) {
+            output += "No se pudo agregar al paciente al servicio.\n";
+
+            continue;
+
+        }
 
         hospital->registerAttention(patient);
 
@@ -140,24 +164,24 @@ string SystemImpl::showServices() {
 }
 
 string SystemImpl::showHistory() {
-    return hospital->getHistory()->showAttentions();
+    return hospital->showAttentions();
 
 }
 
 string SystemImpl::showServicePatients(int index) {
     string output = "";
-    Service* s = hospital->getServiceList()->findByIndex(index);
+    Service* s = hospital->findServiceByIndex(index);
     if (s == nullptr) {
         output = "Error en la validacion de servicio";
         return output;
     }
 
     output += "=== ESTADO DE " + s->getName() + " ===\n";
-    if (s->getPatients()->isEmpty()) {
+    if (s->hasPatients()) {
         output += "No hay pacientes en el departamento de " + s->getName() + ".\n";
     } else {
-        output += "Pacientes en el departamento de " + s->getName() + ": " + to_string(s->getPatients()->getSize()) + "\n";
-        output += s->getPatients()->showPatients();
+        output += "Pacientes en el departamento de " + s->getName() + ": " + to_string(s->getPatientCount()) + "\n";
+        output += s->showPatients();
     }
 
 

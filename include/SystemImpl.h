@@ -9,6 +9,7 @@ class SystemImpl : public System {
     private:
     QueuePatient* patientQueue;
     Hospital* hospital;
+    bool checkDuplicate(std::string id);
 
 
 
