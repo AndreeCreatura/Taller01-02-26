@@ -9,6 +9,22 @@ QueuePatient::QueuePatient() {
     this->size = 0;
 }
 
+Persona* QueuePatient::find(string id)  {
+    if (isEmpty()) {
+        return nullptr;
+    }
+    Node* current = front;
+    while (current != nullptr) {
+        if (current->patient->getID() == id) {
+            return current->patient;
+        }
+        current = current->next;
+    }
+
+
+    return nullptr;
+}
+
 void QueuePatient::push(Persona* patient) {
 
     Node* n = new Node(patient);

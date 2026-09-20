@@ -27,6 +27,7 @@ class QueuePatient {
     QueuePatient();
     void push(Persona* patient);
     Persona* pop();
+    Persona* find(string id);
     bool isEmpty() const;
     int getSize();
 
