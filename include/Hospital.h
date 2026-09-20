@@ -2,21 +2,28 @@
 #include <string>
 #include "ServiceList.h"
 #include "Service.h"
-using namespace std;
+#include "StackHistory.h"
 
 class ServiceList;
 class Service;
+class StackHistory;
 
 class Hospital {
 
     private:
     ServiceList* services;
+    StackHistory* history;
+
 
     public:
     Hospital();
     ~Hospital();
 
-    Service* findService(string name);
+    Service* findService(std::string name);
+
+    void registerAttention(Persona* patient);
+
+    StackHistory* getHistory();
 
 
 };
