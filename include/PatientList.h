@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include "Persona.h"
-using namespace std;
 
 class Persona;
 
@@ -20,6 +19,7 @@ class PatientList {
     };
 
     Node* head;
+    int size;
 
     public:
     PatientList();
@@ -27,9 +27,11 @@ class PatientList {
 
     bool addPatient(Persona* p);
 
-    Persona* find(string id);
+    // Persona* find(std::string id);
 
-    string showPatients();
+    std::string showPatients();
+
+    int getSize();
 
     bool isEmpty();
 
