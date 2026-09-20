@@ -10,6 +10,7 @@ class SystemImpl : public System {
     QueuePatient* patientQueue;
     Hospital* hospital;
     bool checkDuplicate(std::string id);
+    bool parseLine(const std::string& line, std::string& id, std::string& name, std::string& age, std::string& service);
 
 
 

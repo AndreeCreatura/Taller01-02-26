@@ -26,6 +26,41 @@ bool SystemImpl::checkDuplicate(string id) {
     }
 }
 
+bool SystemImpl::parseLine(const string& line, string& id, string& name, string& age, string& service) {
+    // New method for pointer req.
+
+    const char* ptr = line.c_str();
+
+    string fields[4];
+    int field = 0;
+
+    while (*ptr != '\0') {
+        if (*ptr == ';') {
+            field++;
+
+            if (field > 3) {
+                return false;
+            }
+        } else {
+            fields[field] += *ptr;
+        }
+
+        ptr++;
+    }
+
+    if (field != 3) {
+        return false;
+    }
+
+    id = fields[0];
+    name = fields[1];
+    age = fields[2];
+    service = fields[3];
+
+    return true;
+
+}
+
 void SystemImpl::loadPatients(string filePath) {
     std::ifstream file(filePath);
 
@@ -46,10 +81,19 @@ void SystemImpl::loadPatients(string filePath) {
         string ageTxt;
         string service;
 
+        if (!parseLine(line, id, name, ageTxt, service)) {
+            cout << "Invalid line: " << line << endl;
+            continue;
+        }
+
+
+        /*
         if (!getline(ss, id, ';') || !getline(ss, name, ';') || !getline(ss, ageTxt, ';') || !getline(ss, service, ';')) {
             cout << "Invalid line: " << line << endl;
             continue;
         }
+            [Old Used Method]
+        */
 
         string extra;
 
