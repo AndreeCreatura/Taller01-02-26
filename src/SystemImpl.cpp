@@ -74,8 +74,6 @@ void SystemImpl::loadPatients(string filePath) {
 
     while(std::getline(file, line)) { 
 
-        stringstream ss(line);
-
         string id;
         string name;
         string ageTxt;
@@ -87,20 +85,6 @@ void SystemImpl::loadPatients(string filePath) {
         }
 
 
-        /*
-        if (!getline(ss, id, ';') || !getline(ss, name, ';') || !getline(ss, ageTxt, ';') || !getline(ss, service, ';')) {
-            cout << "Invalid line: " << line << endl;
-            continue;
-        }
-            [Old Used Method]
-        */
-
-        string extra;
-
-        if (getline(ss, extra, ';')) {
-            cout << "Invalid line: " << line << endl;
-            continue;
-        }
 
         if (id.empty() || name.empty() || ageTxt.empty() || service.empty()) {
             cout << "Invalid line: " << line << endl;
@@ -110,9 +94,10 @@ void SystemImpl::loadPatients(string filePath) {
         int age;
 
         try {
-            age = stoi(ageTxt);
+            size_t pos;
+            age = stoi(ageTxt, &pos);
 
-            if (age < 0) {
+            if (age < 0 || pos != ageTxt.length()) {
                 cout << "Invalid Age: " << line << endl;
                 continue;
 
@@ -181,7 +166,7 @@ string SystemImpl::attendPatients(int amount) {
 
         if (!service->addPatient(patient)) {
             output += "No se pudo agregar al paciente al servicio.\n";
-
+            delete patient;
             continue;
 
         }

@@ -21,6 +21,10 @@ PatientList::~PatientList() {
 
 bool PatientList::addPatient(Persona* p) {
 
+    if (p == nullptr) {
+        return false;
+    }
+
     Node* n = new Node(p);
 
     if (isEmpty()) {
