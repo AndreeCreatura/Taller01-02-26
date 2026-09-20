@@ -27,7 +27,7 @@ class ServiceList {
     ServiceList();
     ~ServiceList();
 
-    void add(Service* service);
+    void add(string name);
     Service* find(string name);
 
     Service* findByIndex(int index);
