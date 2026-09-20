@@ -19,8 +19,9 @@ class SystemImpl : public System {
     std::string showWaiting() override;
 
     void loadPatients(std::string filePath) override;
-    void attendPatients(int amount) override;
-    void showServices() override;
-    void showHistory() override;
+    std::string attendPatients(int amount) override;
+    std::string showServices() override;
+    std::string showHistory() override;
+    std::string showServicePatients(int index) override;
 
 };

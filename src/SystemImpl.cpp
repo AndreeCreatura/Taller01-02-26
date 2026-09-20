@@ -80,18 +80,76 @@ SystemImpl::~SystemImpl() {
 
 }
 
-void SystemImpl::attendPatients(int amount) {
+string SystemImpl::attendPatients(int amount) {
+    string output;
+    if (amount > patientQueue->getSize()) {
+        output += "No se pudo realizar la operacion. La cantidad ingresada es mayor al numero de pacientes.";
+        return output;
+    }
 
-    cout << patientQueue->showPatients() << endl;
+
+    for (int i = 0; i < amount; i++) {
+        if (patientQueue->isEmpty()) {
+            output += "No quedan pacientes en espera.\n";
+            return output;
+        }
+
+        Persona* patient = patientQueue->pop();
+
+        Service* service = hospital->findService(patient->getService());
+
+        if (service == nullptr) {
+            output = "Hubo un error en el manejo del servicio";
+            return output;
+        }
+
+        service->addPatient(patient);
+
+        hospital->registerAttention(patient);
+
+        output += "ID: " + patient->getID() + "\n";
+        output += "Nombre: " + patient->getName() + "\n";
+        output += "Edad: " + to_string(patient->getAge()) + "\n";
+        output += "Servicio: " + patient->getService() + "\n\n";
+        output += "Paciente enviado a " + patient->getService() + ".\n\n";
+        
+    }
+
+    return output;
+    
 
 }
 
 
-void SystemImpl::showServices() {
+string SystemImpl::showServices() {
+
+    return hospital->showServices();
 
 }
 
-void SystemImpl::showHistory() {
+string SystemImpl::showHistory() {
+    return hospital->getHistory()->showAttentions();
+
+}
+
+string SystemImpl::showServicePatients(int index) {
+    string output = "";
+    Service* s = hospital->getServiceList()->findByIndex(index);
+    if (s == nullptr) {
+        output = "Error en la validacion de servicio";
+        return output;
+    }
+
+    output += "=== ESTADO DE " + s->getName() + " ===\n";
+    if (s->getPatients()->isEmpty()) {
+        output += "No hay pacientes en el departamento de " + s->getName() + ".\n";
+    } else {
+        output += "Pacientes en el departamento de " + s->getName() + ": " + to_string(s->getPatients()->getSize()) + "\n";
+        output += s->getPatients()->showPatients();
+    }
+
+
+    return output;
 
 }
 
