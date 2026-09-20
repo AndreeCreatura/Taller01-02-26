@@ -19,8 +19,6 @@ class Hospital {
     Hospital();
     ~Hospital();
 
-    ServiceList* getServiceList();
-
     Service* findService(std::string name);
 
     Service* findServiceByIndex(int index);
