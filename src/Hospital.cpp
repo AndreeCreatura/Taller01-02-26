@@ -41,6 +41,10 @@ StackHistory* Hospital::getHistory() {
 
 }
 
+ServiceList* Hospital::getServiceList() {
+    return this->services;
+}
+
 
 
 Hospital::~Hospital() {

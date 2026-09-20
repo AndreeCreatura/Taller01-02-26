@@ -19,6 +19,8 @@ class Hospital {
     Hospital();
     ~Hospital();
 
+    ServiceList* getServiceList();
+
     Service* findService(std::string name);
 
     void registerAttention(Persona* patient);
