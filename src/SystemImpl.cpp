@@ -60,6 +60,7 @@ void SystemImpl::loadPatients(string filePath) {
 
         if (id.empty() || name.empty() || ageTxt.empty() || service.empty()) {
             cout << "Invalid line: " << line << endl;
+            continue;
         }
 
         int age;
@@ -177,7 +178,7 @@ string SystemImpl::showServicePatients(int index) {
     }
 
     output += "=== ESTADO DE " + s->getName() + " ===\n";
-    if (s->hasPatients()) {
+    if (!s->hasPatients()) {
         output += "No hay pacientes en el departamento de " + s->getName() + ".\n";
     } else {
         output += "Pacientes en el departamento de " + s->getName() + ": " + to_string(s->getPatientCount()) + "\n";

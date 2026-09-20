@@ -121,6 +121,7 @@ QueuePatient::~QueuePatient() {
         Node* aux = front;
         front = front->next;
 
+        delete aux->patient;
         delete aux;
 
     }

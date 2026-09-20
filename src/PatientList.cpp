@@ -9,8 +9,7 @@ PatientList::PatientList() {
 }
 
 PatientList::~PatientList() {
-    Node* current = head;
-    while (current != nullptr) {
+    while (head != nullptr) {
         Node* aux = head;
         head = head->next;
 

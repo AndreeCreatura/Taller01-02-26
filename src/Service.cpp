@@ -23,7 +23,7 @@ int Service::getPatientCount() {
 }
 
 bool Service::hasPatients() {
-    return patients->isEmpty();
+    return !patients->isEmpty();
 }
 
 string Service::showPatients() {

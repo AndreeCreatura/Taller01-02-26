@@ -6,7 +6,7 @@ Persona::Persona(string ID, string name, int age, string service) {
     this->ID = ID;
     this->name = name;
     this->age = age;
-    this->service;
+    this->service = service;
 }
 
 string Persona::getID() {

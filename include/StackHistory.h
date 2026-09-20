@@ -29,5 +29,5 @@ class StackHistory {
     void push(Attention* a);
     Attention* pop();
 
-    string showAttentions();
+    std::string showAttentions();
 };
