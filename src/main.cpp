@@ -54,7 +54,7 @@ int main() {
         cout << endl;
 
         if (!isNumber(input)) {
-            cout << "Error de formato! Ingrese un numero valido";
+            cout << "Error de formato! Ingrese un numero valido" << endl;
             continue;
         }
 
@@ -79,7 +79,7 @@ int main() {
             cout << endl;
 
             while (!isNumber(input)) {
-                cout << "Valor invalido. Ingrese un valor valido: " << endl;
+                cout << "Valor invalido. Ingrese un valor valido: ";
                 getline(cin, input);
                 cout << endl;
 
@@ -98,20 +98,43 @@ int main() {
                 break;
             }
 
-            system->attendPatients(amount);
+            cout << "=== ATENDIENDO PACIENTES ===" << endl;
+
+            cout << system->attendPatients(amount) << endl;
             totalOp++;
             break;
         }
 
-        case 2:
-            system->showServices();
-            totalOp++;
-            break;
+        case 2: {
+            int index;
+            cout << "=== DEPARTAMENTOS/SERVICIOS ===" << endl;
+            cout << system->showServices() << endl;
+            cout << "Seleccionar opcion: ";
+            getline(cin, input);
+            cout << endl;
+            while (!isNumber(input)) {
+                cout << "Valor invalido. Ingrese un valor valido: ";
+                getline(cin, input);
+                cout << endl;
+            }
 
-        case 3:
-            system->showHistory();
+            try {
+                index = stoi(input);
+            } catch (const out_of_range&) {
+                cout << "Numero demasiado grande!" << endl;
+                continue;
+            }
+
+            cout << system->showServicePatients(index) << endl;
             totalOp++;
             break;
+        }
+
+        case 3: {
+            cout << system->showHistory() << endl;
+            totalOp++;
+            break;
+        }
 
         case 4:
             menu = false;
@@ -119,7 +142,7 @@ int main() {
             break;
         
         default:
-            cout << "Inavlido! Seleccione una opcion entre el 1 y el 4." << endl;
+            cout << "Invalido! Seleccione una opcion entre el 1 y el 4." << endl;
             break;
         }
 
